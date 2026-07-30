@@ -1,1 +1,478 @@
 
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sénior Seguro - Guia Acessível de Segurança Digital</title>
+    <style>
+        /* BASE & VARIÁVEIS DE ACESSIBILIDADE */
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --primary-color: #0d5c75;
+            --primary-hover: #083c4d;
+            --accent-color: #d97706;
+            --border-color: #cbd5e1;
+            --font-scale: 1rem;
+            --line-height: 1.6;
+        }
+
+        /* MODO ALTO CONTRASTE */
+        .high-contrast {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --card-bg: #121212;
+            --primary-color: #ffff00;
+            --primary-hover: #e6e600;
+            --accent-color: #00ffff;
+            --border-color: #ffffff;
+        }
+
+        .high-contrast header, 
+        .high-contrast footer {
+            background-color: #000000 !important;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .high-contrast .card {
+            border: 2px solid #ffffff;
+        }
+
+        .high-contrast button {
+            background-color: #ffff00 !important;
+            color: #000000 !important;
+            font-weight: bold;
+            border: 2px solid #ffffff !important;
+        }
+
+        /* RESET E ESTILOS GERAIS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: calc(var(--font-scale) * 1.15);
+            line-height: var(--line-height);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* BARRA DE FERRAMENTAS DE ACESSIBILIDADE (FIXA NO TOPO) */
+        .accessibility-bar {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .accessibility-bar span {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-acc {
+            background-color: #334155;
+            color: #ffffff;
+            border: 2px solid #64748b;
+            padding: 8px 16px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            min-height: 44px; /* Tamanho mínimo de toque para acessibilidade */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-acc:hover, .btn-acc:focus {
+            background-color: #475569;
+            outline: 3px solid #f59e0b;
+        }
+
+        /* CABEÇALHO DA PÁGINA */
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .high-contrast header {
+            color: #ffff00;
+        }
+
+        header h1 {
+            font-size: calc(var(--font-scale) * 2.2);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: calc(var(--font-scale) * 1.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ESTRUTURA DE CONTEÚDO */
+        container {
+            display: block;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* NAVEGAÇÃO RÁPIDA (ÍNDICE) */
+        .nav-index {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .nav-index h2 {
+            font-size: calc(var(--font-scale) * 1.4);
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .high-contrast .nav-index h2 {
+            color: #ffff00;
+        }
+
+        .nav-index ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-index a {
+            display: block;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-decoration: underline;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-weight: bold;
+        }
+
+        .nav-index a:hover, .nav-index a:focus {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            outline: 3px solid var(--accent-color);
+        }
+
+        .high-contrast .nav-index a:hover {
+            background-color: #ffff00;
+            color: #000000;
+        }
+
+        /* CARTÕES DE CONSELHOS */
+        .card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .card-icon {
+            font-size: calc(var(--font-scale) * 2.5);
+            line-height: 1;
+        }
+
+        .card h2 {
+            font-size: calc(var(--font-scale) * 1.6);
+            color: var(--primary-color);
+        }
+
+        .high-contrast .card h2 {
+            color: #ffff00;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+        }
+
+        /* CAIXAS DE ALERTA / DESTAQUE */
+        .tip-box {
+            background-color: rgba(217, 119, 6, 0.1);
+            border-left: 6px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .high-contrast .tip-box {
+            background-color: #1a1a1a;
+            border-left: 6px solid #00ffff;
+            color: #ffffff;
+        }
+
+        .tip-box strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: calc(var(--font-scale) * 1.1);
+        }
+
+        /* LISTAS VERIFICAÇÃO */
+        .checklist {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .checklist li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: green;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        .high-contrast .checklist li::before {
+            color: #00ff00;
+        }
+
+        /* CAIXA DE NÚMEROS ÚTEIS */
+        .emergency-box {
+            background-color: #fef2f2;
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        .high-contrast .emergency-box {
+            background-color: #260000;
+            border-color: #ff4444;
+        }
+
+        .emergency-box h2 {
+            color: #991b1b;
+            margin-bottom: 10px;
+        }
+
+        .high-contrast .emergency-box h2 {
+            color: #ff6666;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background-color: #0f172a;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        /* OCULTO APENAS VISUALMENTE (PARA LEITORES DE ECRÃ) */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* RESPONSIVIDADE PARA TELEMÓVEIS */
+        @media (max-width: 600px) {
+            .accessibility-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .controls {
+                justify-content: space-between;
+            }
+            header {
+                padding: 25px 15px;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE FERRAMENTAS DE ACESSIBILIDADE -->
+    <div class="accessibility-bar" role="region" aria-label="Ferramentas de Acessibilidade">
+        <span>Opções de Leitura:</span>
+        <div class="controls">
+            <button class="btn-acc" onclick="changeFontSize(0.1)" title="Aumentar tamanho do texto">A+ Texto Maior</button>
+            <button class="btn-acc" onclick="changeFontSize(-0.1)" title="Diminuir tamanho do texto">A- Texto Menor</button>
+            <button class="btn-acc" onclick="toggleContrast()" title="Alternar para alto contraste">🎨 Alto Contraste</button>
+        </div>
+    </div>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <h1>Sénior Seguro 🛡️</h1>
+        <p>O seu guia prático e simples para navegar na Internet com total confiança e segurança.</p>
+    </header>
+
+    <container>
+
+        <!-- ÍNDICE DE NAVEGAÇÃO -->
+        <nav class="nav-index" aria-label="Navegação rápida pelos tópicos">
+            <h2>Escolha o tema que deseja aprender:</h2>
+            <ul>
+                <li><a href="#senhas">1. Palavras-passe Seguras</a></li>
+                <li><a href="#mensagens">2. Mensagens e Chamadas Falsas</a></li>
+                <li><a href="#compras">3. Compras e Bancos Online</a></li>
+                <li><a href="#redes">4. Cuidados nas Redes Sociais</a></li>
+            </ul>
+        </nav>
+
+        <!-- SECÇÃO 1: PALAVRAS-PASSE -->
+        <section id="senhas" class="card">
+            <div class="card-header">
+                <span class="card-icon" aria-hidden="true">🔑</span>
+                <h2>1. Como criar e proteger Palavras-passe</h2>
+            </div>
+            <p>As palavras-passe (ou <em>passwords</em>) são a chave de entrada para a sua vida digital. Protegê-las é o primeiro passo para manter as suas informações em segurança.</p>
+            
+            <div class="tip-box">
+                <strong>Regra de Ouro:</strong> Nunca utilize datas de nascimento, o seu nome ou sequências simples como "123456".
+            </div>
+
+            <ul class="checklist">
+                <li><strong>Crie frases fáceis de memorizar:</strong> Em vez de uma palavra, use uma frase curta (exemplo: <em>OmeuCaoGostaDePassear!8</em>).</li>
+                <li><strong>Não repita palavras-passe:</strong> Use uma palavra-passe diferente para a sua conta bancária e para o seu correio eletrónico.</li>
+                <li><strong>Guarde com cuidado:</strong> Se precisar de apontar num caderno, guarde-o num local seguro em casa e nunca junto do telemóvel ou computador.</li>
+                <li><strong>Nunca partilhe:</strong> Nenhum funcionário de banco ou operador vai pedir a sua palavra-passe por telefone ou mensagem.</li>
+            </ul>
+        </section>
+
+        <!-- SECÇÃO 2: MENSAGENS E CHAMADAS FALSAS -->
+        <section id="mensagens" class="card">
+            <div class="card-header">
+                <span class="card-icon" aria-hidden="true">📩</span>
+                <h2>2. Evitar Mensagens e Chamadas Falsas (Burlas)</h2>
+            </div>
+            <p>Muitos burlões enviam mensagens a fingir que são do seu banco, dos CTT, da Finanças ou até de familiares a pedir dinheiro com urgência (a chamada "burla do Olá Pai/Olá Mãe").</p>
+
+            <div class="tip-box">
+                <strong>Atenção:</strong> Se receber uma mensagem com urgência a pedir dinheiro, pare e respire. Ligue diretamente para a pessoa pelo número antigo que já tem gravado.
+            </div>
+
+            <ul class="checklist">
+                <li><strong>Não clique em ligações (links) suspeitas:</strong> Mensagens que dizem "A sua encomenda está presa" ou "A sua conta foi bloqueada" costumam ser falsas.</li>
+                <li><strong>Desconfie de números desconhecidos:</strong> Se um número estranho lhe pedir dinheiro no WhatsApp, não faça qualquer transferência.</li>
+                <li><strong>Confirme sempre por chamada:</strong> Se receber um pedido de ajuda financeira de um amigo ou familiar, ligue-lhe para ouvir a voz dele antes de fazer qualquer transação.</li>
+            </ul>
+        </section>
+
+        <!-- SECÇÃO 3: COMPRAS E BANCOS ONLINE -->
+        <section id="compras" class="card">
+            <div class="card-header">
+                <span class="card-icon" aria-hidden="true">💳</span>
+                <h2>3. Compras e Banco na Internet com Segurança</h2>
+            </div>
+            <p>Utilizar o banco ou fazer compras pela Internet pode ser muito cómodo, desde que siga algumas regras básicas para proteger o seu dinheiro.</p>
+
+            <ul class="checklist">
+                <li><strong>Verifique o símbolo do cadeado:</strong> No topo da página do navegador, veja se existe o ícone de um cadeado fechado (🔒) antes de introduzir dados bancários.</li>
+                <li><strong>Evite redes Wi-Fi públicas:</strong> Não aceda à aplicação do seu banco quando estiver ligado ao Wi-Fi gratuito de cafés, praças ou centros comerciais.</li>
+                <li><strong>Utilize cartões virtuais:</strong> Se comprar online, pergunte ao seu banco como criar cartões temporários (como o serviço MB WAY em Portugal).</li>
+            </ul>
+        </section>
+
+        <!-- SECÇÃO 4: REDES SOCIAIS -->
+        <section id="redes" class="card">
+            <div class="card-header">
+                <span class="card-icon" aria-hidden="true">👥</span>
+                <h2>4. Cuidados nas Redes Sociais (Facebook, WhatsApp)</h2>
+            </div>
+            <p>As redes sociais servem para manter o contacto com amigos e familiares, mas é importante proteger a sua privacidade.</p>
+
+            <ul class="checklist">
+                <li><strong>Cuidado com o que publica:</strong> Evite publicar fotografias que mostrem quando vai de férias ou a morada da sua residência.</li>
+                <li><strong>Aceite apenas quem conhece:</strong> Não aceite pedidos de amizade de pessoas desconhecidas.</li>
+                <li><strong>Confirme as notícias:</strong> Nem tudo o que lê no Facebook ou WhatsApp é verdade. Evite partilhar mensagens alarmistas sem ter certeza.</li>
+            </ul>
+        </section>
+
+        <!-- CAIXA DE CONTACTOS DE EMERGÊNCIA -->
+        <div class="emergency-box" role="region" aria-label="Contactos de Ajuda">
+            <h2>🆘 Precisa de ajuda ou foi vítima de burla?</h2>
+            <p>Se desconfia que foi vítima de uma burla ou facultou dados bancários por engano:</p>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Ligue imediatamente para o seu Banco</strong> para cancelar os cartões.</li>
+                <li><strong>Contacte a Polícia (PSP ou GNR)</strong> mais próxima da sua área de residência.</li>
+                <li><strong>Procure apoio de um familiar</strong> ou pessoa de confiança para o ajudar nos passos seguintes.</li>
+            </ol>
+        </div>
+
+    </container>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p><strong>Sénior Seguro</strong> — Projeto dedicado ao bem-estar e à inclusão digital dos nossos idosos.</p>
+        <p>Página desenhada para uma leitura fácil, clara e acessível.</p>
+    </footer>
+
+    <!-- LÓGICA EM JAVASCRIPT APENAS PARA AUMENTAR/DIMINUIR TEXTO E MODO CONTRASTE -->
+    <script>
+        let currentScale = 1.0;
+
+        function changeFontSize(delta) {
+            currentScale += delta;
+            if (currentScale < 0.8) currentScale = 0.8;
+            if (currentScale > 1.6) currentScale = 1.6;
+            document.documentElement.style.setProperty('--font-scale', `${currentScale}rem`);
+        }
+
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+    </script>
+</body>
+</html>
